@@ -1,0 +1,19 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Init  Upgrade" type="#org.intellij.plugins.hcl.terraform.run.TerraformConfigurationType" factoryName="Terraform" show_console_on_std_err="false" show_console_on_std_out="false">
+    <option name="allowRunningInParallel" value="false" />
+    <option name="envs">
+      <map />
+    </option>
+    <option name="passParentEnvs" value="true" />
+    <option name="programParameters" value="init -upgrade" />
+    <option name="projectPathOnTarget" />
+    <option name="selectedOptions">
+      <list />
+    </option>
+    <option name="workingDirectory" value="C:\dev\lucid\terraform-flatcar-proxmox\environment\sample-container" />
+    <option name="PROGRAM_PARAMETERS" value="init -upgrade" />
+    <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/environment/sample-container" />
+    <option name="PASS_PARENT_ENVS" value="true" />
+    <method v="2" />
+  </configuration>
+</component>
