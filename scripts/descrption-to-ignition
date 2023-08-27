@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# A script to transition a dat URL from a VM image into a file that is deployed as part of a VM configuration
+# A script to transition a data URL from a VM image into a file that is deployed as part of a VM configuration
 
 # see
 # - /usr/share/pve-docs/examples/guest-example-hookscript.pl
@@ -27,7 +27,7 @@ function configure()
                 if [ -n "$FW_CFG" ] ; then
                         # fw_cfg set correctly
                 else
-                        echo "Error: The VM configuration must contains addtional Qemu arguments of -fw_cfg name=opt/org.flatcar-linux/config,file=/etc/pve/local/ignition/${VM_ID}.ign"
+                        echo "Error: The VM configuration must contains additional Qemu arguments of -fw_cfg name=opt/org.flatcar-linux/config,file=/etc/pve/local/ignition/${VM_ID}.ign"
                         exit 5
                 fi
 
