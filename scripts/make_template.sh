@@ -34,7 +34,7 @@ VARS_IMAGE=flatcar_production_qemu_uefi_efi_vars.fd
 CODE_IMAGE=flatcar_production_qemu_uefi_efi_code.fd
 OS_IMAGE=flatcar_production_qemu_uefi_image.img
 NAME=flatcar-linux
-DATASTORE=vmroot
+DATASTORE=local
 
 while true; do
   case "$1" in
