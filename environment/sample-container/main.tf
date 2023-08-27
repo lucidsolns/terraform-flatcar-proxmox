@@ -10,7 +10,6 @@ module "ignition-vm" {
   butane_conf         = "${path.module}/vm-configuration.bu.tftpl"
   name                = "flatcar-sample-container"
   vm_id               = 500
-  storage             = "vmroot"
   network_tag         = 109
   tags                = ["sample", "flatcar"]
   vm_count            = 1
