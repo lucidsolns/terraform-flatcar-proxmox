@@ -105,5 +105,12 @@ data "ct_config" "ignition_json" {
   strict       = false
   pretty_print = true
 
-  snippets = var.butane_conf_snippets
+  snippets = [
+    for snippet in var.butane_conf_snippets : templatefile(var.butane_conf, {
+      "vm_id"          = var.vm_count > 1 ? var.vm_id + count.index : var.vm_id
+      "vm_name"        = var.vm_count > 1 ? "${var.name}-${count.index + 1}" : var.name
+      "vm_count"       = var.vm_count,
+      "vm_count_index" = count.index,
+    })
+  ]
 }
