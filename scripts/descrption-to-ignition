@@ -25,7 +25,7 @@ function configure()
                 # Check the fw_cfg argument is set (and points to the ignition configuration written above)
                 local FW_CFG=$(printf "%s" "${VM_CONFIG}" | sed -ne 's/^args: .*\(-fw_cfg name=opt\/org.flatcar-linux\/config,file=[^\\ ]*\)/\1/gp')
                 if [ -n "$FW_CFG" ] ; then
-                        # fw_cfg set correctly
+                        return # fw_cfg set correctly
                 else
                         echo "Error: The VM configuration must contains additional Qemu arguments of -fw_cfg name=opt/org.flatcar-linux/config,file=/etc/pve/local/ignition/${VM_ID}.ign"
                         exit 5
