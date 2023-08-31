@@ -80,38 +80,30 @@ As of August 2023, the following limitation and residuals have been observed:
 an API key doesn't work, and using an API key for root also doesn't work, 
 as the username 'root@pam!terraform' doesn't match the required identity of 'root@pam'.
 
-2. The terraform script doesn't perform a full destroy/create cycle on the VM when the butane 
-configuration changes. Given the Flatcar VM will only apply the configuration on first 
-boot, the updated configuration will not be applied.
+2. The Qemu command line parsing requires to the Ignition configuration to have all 
+comma's escaped with another comma (i.e. a double comma).
 
-3. The Qemu command line parsing requires to the Ignition configuration to have all 
-comma's escaped with another comma (i.e. a double comma)
+3. Ignition support in Flatcar Linux **Stable** is limited to Butane version 1.0.0 with the generated
+ignition files being v3.3.0 using ct provider v0.12 (**important**: not latest ct provider)
 
-4. Ignition support in Flatcar linux is limited to version 1.1.0
-
-5. When creating a Proxmox UEFI VM with a pre-made image, the special `file=<storage>:0`
+4. When creating a Proxmox UEFI VM with a pre-made image, the special `file=<storage>:0`
 syntax must be used. e.g. if the node local disk is called 'local' then the syntax would be:
 ```
    --efidisk0 "file=local:0,import-from=flatcar_production_qemu_image.img,efitype=4m,format=raw,pre-enrolled-keys=1"
 ```
 
-6. Although the flatcar linux qemu image has a `.img` extension, it is 
-a [qcow2](https://en.wikipedia.org/wiki/Qcow) formatted file. The image
-has multiple partitions.
+5. Although the flatcar linux qemu image has a `.img` extension, it is 
+a [qcow2](https://en.wikipedia.org/wiki/Qcow) formatted file. The image has multiple partitions.
 
-7. The documentation isn't clear as to the correct way to mount UEFI code partitions as
+6. The documentation isn't clear as to the correct way to mount UEFI code partitions as
 a read-only volume. It is unclear how to specify a pflash drive for the UEFI code. To see
 the Qemu configuration run `qm showcmd <vm id> --pretty`, which shows the two EFI
 pflash drives.
 
-8. Terraform Telmate/Proxmox provider doesn't support setting the hookscript upon , thus
+7. Terraform Telmate/Proxmox provider doesn't support setting the hookscript upon create, thus
 the hookscript must be set in the template and inherited to child VM's.
 
-9. The proxmox hook script locks the vm configuration - thus stopping the hook script
+8. The proxmox hook script locks the vm configuration - thus stopping the hook script
 from modifying/mutating the configuration. Even if the configuration is changed the
 Proxmox *start* code will not reload the changes after the hookscript runs.
 
-10. It appears that Butane produces ignition v3.x.x configurations, whereas Flatcar 'stable'
-will only consume ignition v2.x.x configurations (test after the first boot by injecting a
-`fw_cfg` with versions and run `ignition --log-to-stdout --platform qemu -stage fetch`). Flatcar
-v3510.2.6 uses Ignition v2.14.0

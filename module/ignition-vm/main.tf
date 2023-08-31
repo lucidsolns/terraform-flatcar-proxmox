@@ -80,6 +80,9 @@ resource "proxmox_vm_qemu" "test_server" {
     ignore_changes        = [
       disk # the disk is provisioned in the template and inherited (but not defined here]
     ]
+    replace_triggered_by = [
+      null_resource.node_replace_trigger[count.index].id
+    ]
   }
 }
 
@@ -113,4 +116,15 @@ data "ct_config" "ignition_json" {
       "vm_count_index" = count.index,
     })
   ]
+}
+
+/**
+    A null resource to track changes, so that the immutable VM is recreated
+ */
+resource "null_resource" "node_replace_trigger" {
+  count   = var.vm_count
+  # Changes to any instance of the cluster requires re-provisioning
+  triggers = {
+    "ignition" = "${data.ct_config.ignition_json[count.index].rendered}"
+  }
 }

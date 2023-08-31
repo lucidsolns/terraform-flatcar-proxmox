@@ -30,6 +30,15 @@ terraform {
       source  = "poseidon/ct"
       version = "0.12.0"
     }
+
+    /*
+      see
+        - https://registry.terraform.io/providers/hashicorp/null
+    */
+    null = {
+      source = "hashicorp/null"
+      version = "3.2.1"
+    }
   }
 }
 
