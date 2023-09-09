@@ -1,3 +1,6 @@
+**DEPRECATED:** see [flatcar-ignition-proxmox](https://github.com/lucidsolns/terraform-flatcar-ignition-proxmox) which
+uses *cloud-init* rather than the *VM description* to transport the ignition file through the proxmox API. 
+
 # A sample Proxmox Terraform Flatcar provisioning script
 
 This repository has a script to provision Flatcar VM images using
