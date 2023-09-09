@@ -107,3 +107,7 @@ the hookscript must be set in the template and inherited to child VM's.
 from modifying/mutating the configuration. Even if the configuration is changed the
 Proxmox *start* code will not reload the changes after the hookscript runs.
 
+9. There appears to be limitation on the length of the ignition file to about 8k.
+It is unclear where this limitation is imposed, as the internal code seems to limit
+the description field to 64kbytes. This renders the strategy of hijacking the description
+field as ineffective for all but trivial VM's.
