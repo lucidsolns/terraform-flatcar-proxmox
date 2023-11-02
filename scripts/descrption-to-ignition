@@ -1,8 +1,17 @@
 #!/bin/bash
 #
-# A script to transition a data URL from a VM image into a file that is deployed as part of a VM configuration
-
-# see
+# A script to transition a data URL from a VM image into a file that is
+# deployed as part of a VM configuration.
+#
+# This strategy is really good, right up to the point that the size of the
+# description field is too large. This strategy works for small VM's
+# with a minimal ignition configuration.
+#
+# The script 'cloudinit-to-ignition' overcomes this limitation with a hack
+# that the cloudinit configuration is used to transport the ignition
+# configuration
+#
+# see:
 # - /usr/share/pve-docs/examples/guest-example-hookscript.pl
 #
 set -eu
